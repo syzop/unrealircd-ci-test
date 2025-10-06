@@ -16,7 +16,9 @@ jobs:
 
     steps:
     - name: installdependencies
-      run: sudo apt-get install build-essential pkg-config libssl-dev libpcre2-dev libargon2-dev libsodium-dev libc-ares-dev libcurl4-openssl-dev libjansson-dev
+      run: |
+        sudo rm /var/lib/man-db/auto-update
+        sudo apt-get install build-essential pkg-config libssl-dev libpcre2-dev libargon2-dev libsodium-dev libc-ares-dev libcurl4-openssl-dev libjansson-dev
     - name: installpythondependencies
       run: |
         python -m pip install --break-system-packages pyasyncore
@@ -26,3 +28,5 @@ jobs:
       run: extras/build-tests/nix/build
     - name: run-tests
       run: extras/build-tests/nix/run-tests
+    - name: tls-tests
+      run: extras/tests/tls/tls-tests
