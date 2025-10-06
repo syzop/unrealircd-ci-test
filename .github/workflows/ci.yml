@@ -15,7 +15,11 @@ jobs:
 
     strategy:
       matrix:
-        compiler: [ {cpp: g++, c: gcc}, {cpp: clang++, c: clang} ]
+        compiler: [ {c: gcc, cpp: g++}, {c: clang, cpp: clang++} ]
+
+    env:
+      CC: ${{ matrix.compiler.c }}
+      CXX: ${{ matrix.compiler.cpp }}
 
     steps:
     - name: installdependencies
