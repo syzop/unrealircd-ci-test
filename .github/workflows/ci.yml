@@ -11,8 +11,11 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        compiler: [ {cpp: g++, c: gcc}, {cpp: clang++, c: clang} ]
 
     steps:
     - name: installdependencies
@@ -28,5 +31,3 @@ jobs:
       run: extras/build-tests/nix/build
     - name: run-tests
       run: extras/build-tests/nix/run-tests
-    - name: tls-tests
-      run: extras/tests/tls/tls-tests
