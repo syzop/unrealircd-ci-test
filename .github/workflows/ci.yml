@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "unreal60_dev" ]
 
+env:
+  FREEBSD: 1
+
 jobs:
   build:
 
