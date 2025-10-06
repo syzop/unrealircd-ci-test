@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ "unreal60_dev" ]
+  pull_request:
+    branches: [ "unreal60_dev" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: build
+      run: extras/build-tests/nix/build
+    - name: run-tests
+      run: extras/build-tests/nix/run-tests
