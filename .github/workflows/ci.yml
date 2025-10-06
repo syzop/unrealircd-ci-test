@@ -7,7 +7,7 @@ on:
     branches: [ "unreal60_dev" ]
 
 env:
-  FREEBSD: 1
+  NOSERVICES: 1
 
 jobs:
   build:
@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: installdependencies
+      run: sudo apt-get install build-essential pkg-config gdb libssl-dev libpcre2-dev libargon2-dev libsodium-dev libc-ares-dev libcurl4-openssl-dev libjansson-dev
     - uses: actions/checkout@v4
     - name: build
       run: extras/build-tests/nix/build
